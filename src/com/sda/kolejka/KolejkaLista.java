@@ -8,9 +8,6 @@ public class KolejkaLista {
 
     List<Integer> lista = new LinkedList();
 
-
-
-
     public void add(int liczba) {
         lista.add(liczba);
     }
@@ -30,5 +27,6 @@ public class KolejkaLista {
         int pierwszy = lista.get(0);
         lista.remove(0);
         return pierwszy;
+
     }
 }
