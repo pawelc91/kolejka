@@ -3,16 +3,15 @@ public class Main {
 
         Kolejka kolejka = new Kolejka();
 
-        if (kolejka.isEmpty()) System.out.println("kolejka jest pusta: ");
+        if (kolejka.isEmpty()) System.out.println("Kolejka jest pusta");
 
         kolejka.add(7);
         kolejka.add(5);
         kolejka.add(3);
 
         kolejka.show();
-
-        System.out.println("pierwszy element w kolejce to: " + kolejka.pop());
-        System.out.println("zdejmujemy element pierwszy ");
+        System.out.println("Pierwszy element w kolejce to: "+kolejka.pop());
+        System.out.println("Zdejmujemy element pierwszy");
         kolejka.push();
         kolejka.show();
 
@@ -22,10 +21,15 @@ public class Main {
         kolejka.add(12);
         kolejka.show();
 
-        kolejka.find(13);
+        kolejka.find(15);
+        kolejka.delete(4);
+        kolejka.show();
 
+        kolejka.showReverse();
 
+        kolejka.popLast();
 
-
+        kolejka.pushLast();
+        kolejka.show();
     }
 }

@@ -8,19 +8,19 @@ public class Kolejka {
         ostatni = null;
     }
 
+
     public void add(int wartosc) {
         Element nowyElement = new Element(wartosc);
-        if(isEmpty()){
+        if (isEmpty()) {
             pierwszy = ostatni = nowyElement;
         } else {
             nowyElement.setPoprzedni(ostatni);
             ostatni.setNastepny(nowyElement);
             ostatni = nowyElement;
-
         }
     }
 
-    public int pop(){
+    public int pop() {
         return pierwszy.getWartosc();
     }
 
@@ -29,43 +29,79 @@ public class Kolejka {
         pierwszy = pierwszy.getNastepny();
         pierwszy.setPoprzedni(null);
         return zwracana;
-
     }
 
-    public boolean find(int szukana) {
+    public Element find(int szukana) {
         Element indexElement = pierwszy;
         int index = 0;
-        while (indexElement !=null) {
+        while (indexElement != null) {
             if (szukana == indexElement.getWartosc()) {
-                System.out.println("Wartość " + szukana + " została znaleziona na indeksie " + index);
-                return true;
+                System.out.println("Wartosc " + szukana + " została znaleziona na indeksie " + index);
+                return indexElement;
             } else {
                 index++;
                 indexElement = indexElement.getNastepny();
             }
         }
-        System.out.println("niestety nie znalazłem wartości " + szukana);
-        return false;
+        System.out.println("Niestety nie znalazłem wartości "+szukana);
+        return null;
     }
 
+    public boolean delete(int usuwana) {
+        Element znaleziony = find(usuwana);
+        if (znaleziony != null ) {
+            if (znaleziony == pierwszy) push();
+            else {
+                if (znaleziony == ostatni) {
+                    ostatni = ostatni.getPoprzedni();
+                    ostatni.setNastepny(null);
+                } else {
+                    znaleziony.getPoprzedni().setNastepny(znaleziony.getNastepny());
+                    znaleziony.getNastepny().setPoprzedni(znaleziony.getPoprzedni());
+                }
+            }
+            return true;
+        }
+        return false;
+
+    }
 
     public void show() {
         Element indexElement = pierwszy;
 
         while (indexElement != null) {
-            System.out.print(indexElement.getWartosc()+ " ");
+            System.out.print(indexElement.getWartosc() + " ");
             indexElement = indexElement.getNastepny();
-
         }
-
         System.out.println();
+    }
+
+    public void showReverse() {
+        Element indexOstatni = ostatni;
+        while (indexOstatni != null) {
+            System.out.print(indexOstatni.getWartosc() + " ");
+            indexOstatni = indexOstatni.getPoprzedni();
+        }
+        System.out.println();
+
 
     }
 
-    public boolean isEmpty(){
+    public int popLast(){
+        int indexOstatni = ostatni.getWartosc();
+        System.out.println(indexOstatni);
+        return indexOstatni;
+    }
+
+    public int pushLast() {
+        ostatni = ostatni.getPoprzedni();
+        ostatni.setNastepny(null);
+        return ostatni.getWartosc();
+
+    }
+
+    public boolean isEmpty() {
         if (ostatni == null) return true;
         else return false;
     }
-
-
 }

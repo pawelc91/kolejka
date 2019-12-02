@@ -13,10 +13,8 @@ public class Element {
         return wartosc;
     }
 
-
     public void setNastepny(Element nastepny) {
         this.nastepny = nastepny;
-
     }
 
     public Element getNastepny() {
